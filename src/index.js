@@ -1,7 +1,9 @@
+// 스타일 가져오기
+import '@/styles/index.scss';
 
 // 필요한 모듈 가져오기
 import { UI } from '@/js/UI';
-import { Prediction } from './Prediction';
+import { Prediction } from './js/Prediction';
 import camConfig from '@/js/CameraConfig';
 
 // 웹캠 비디오를 저장할 변수
