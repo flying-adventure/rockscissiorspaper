@@ -1,38 +1,76 @@
-<!doctype html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width,initial-scale=1"/>
-      <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-      <title>Rock, Scissors, Paper with TensorFlow.js and Fingerpose</title>
-      <link rel="icon" href="./favicon.png">
-      <script defer="defer" src="./js/runtime.bundle.js"></script><script defer="defer" src="./js/main.bundle.js"></script>
-      <link href="./styles/main.css" rel="stylesheet">
-   </head>
-   <body>
-      <div id="root">
-         <h1 class="ff-8bit">Let's play Rock ✊ Paper 🤚 Scissors ✌</h1>
-         <p class="instructions">After the countdown, show a hand gesture and hold it for a moment.<br>The computer will then make its move (don't worry, it doesn't cheat).</p>
-         <div class="game-container">
-            <div class="player">
-               <h2 class="player-headline"><span class="nick">Human</span> <span class="score" id="score1">0</span></h2>
-               <div class="player-container">
-                  <video id="player-video" class="player-video" poster="assets/human.png" playsinline></video>
-                  <div class="player-hand-container">
-                     <div id="player-hand" class="player-hand"></div>
-                     <svg id="timer-ring" class="timer-ring" height="100" width="100">
-                        <circle class="timer-ring-circle" stroke-width="6" stroke="white" fill="transparent" r="38" cx="50" cy="50"/>
-                        <circle id="timer-ring-circle" class="timer-ring-circle" stroke-width="6" stroke="blue" fill="transparent" r="38" cx="50" cy="50"/>
-                     </svg>
-                  </div>
-               </div>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+
+  <body>
+    <div id="root">
+
+      <!-- 게임 제목 -->
+      <h1 class="ff-8bit">서청센 페스티벌 - AI를 이겨라! 첫번째 게임</h1>
+      <h2 class="ff-8bit">AI와 가위 ✌ 바위 ✊ 보 ✋ 게임을 해요!</h2>
+
+      <!-- 게임 설명 문구 -->
+      <p class="instructions">
+        손 모양을 화면에 보여주세요.<br>
+        AI가 손을 인식해 게임을 진행합니다.
+      </p>
+
+      <div class="game-container">
+
+        <!-- 플레이어 영역 -->
+        <div class="player">
+          <h2 class="player-headline">
+            <span class="nick">플레이어</span>
+            
+          </h2>
+          <div class="player-container">
+
+            <!-- 플레이어 웹캠 영상 -->
+            <video id="player-video" class="player-video" poster="assets/human.png" playsinline></video>
+
+            <div class="player-hand-container">
+
+              <!-- 현재 인식된 손 모양 표시 -->
+              <div id="player-hand" class="player-hand"></div>
+
+              <!-- 타이머 진행 표시 -->
+              <svg id="timer-ring" class="timer-ring" height="100" width="100">
+                <circle class="timer-ring-circle"
+                  stroke-width="6" stroke="white" fill="transparent"
+                  r="38" cx="50" cy="50" />
+                <circle id="timer-ring-circle" class="timer-ring-circle"
+                  stroke-width="6" stroke="blue" fill="transparent"
+                  r="38" cx="50" cy="50" />
+              </svg>
+
             </div>
-            <div class="player">
-               <h2 class="player-headline"><span class="nick">Robot</span> <span class="score" id="score2">0</span></h2>
-               <div class="robot-container"><img id="robot" class="avatar" src="assets/robot.gif" alt=""> <img id="robot-hand" class="robot-hand" alt=""></div>
-            </div>
-            <div class="messages"><span id="message" class="message-text message-fadeInOut"></span></div>
-         </div>
+          </div>
+        </div>
+
+        <!-- 로봇(AI) 영역 -->
+        <div class="player">
+          <h2 class="player-headline">
+            <span class="nick">AI 로봇</span>
+          </h2>
+          <div class="robot-container">
+            <img id="robot" class="avatar" src="assets/robot.gif" alt="">
+            <img id="robot-hand" class="robot-hand" alt="">
+          </div>
+        </div>
+
+        <!-- 게임 메시지 출력 영역 -->
+        <div class="messages">
+          <span id="message" class="message-text message-fadeInOut"></span>
+        </div>
+
       </div>
-   </body>
+
+    </div>
+  </body>
 </html>
