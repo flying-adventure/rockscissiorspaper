@@ -1,10 +1,9 @@
 {
     "name": "rock-paper-scissors",
     "version": "1.0.0",
-    "description": "A simple \"Rock Paper Scissors\" game with hand gesture detection",
+    "description": "\"Rock Paper Scissors\" game with hand gesture detection",
     "main": "index.js",
-    "author": "Andreas Schallwig",
-    "license": "MIT",
+    "author": "ahnsoobin",
     "scripts": {
         "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
         "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
