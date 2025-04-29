@@ -1,4 +1,4 @@
-https://680f6a437af23473ed0c000a--fabulous-eclair-d7309c.netlify.app/
+https://rockscissiorspapergame.netlify.app/
 
 <h1>HOW to run</h1>
 
