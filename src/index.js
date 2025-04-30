@@ -1,6 +1,19 @@
 // 스타일 가져오기
 import '@/styles/index.scss';
 
+// 사운드 관련 import
+import { Howl } from 'howler';
+import clickSoundFile from './sounds/click.mp3';
+import winSoundFile from './sounds/win.mp3';
+import loseSoundFile from './sounds/lose.mp3';
+
+// 사운드 객체 생성
+const sounds = {
+  click: new Howl({ src: [clickSoundFile], volume: 0.4 }),
+  win: new Howl({ src: [winSoundFile], volume: 0.6 }),
+  lose: new Howl({ src: [loseSoundFile], volume: 0.6 })
+};
+
 // 필요한 모듈 가져오기
 import { UI } from '@/js/UI';
 import { Prediction } from './js/Prediction';
@@ -10,8 +23,10 @@ import camConfig from '@/js/CameraConfig';
 var playerVideo;
 
 // 게임 초기 설정 및 준비
-async function onInit() {
+async function onInit(nickname) {
     UI.init();
+    UI.setPlayerNickname(nickname); // 닉네임을 UI에 표시
+    UI.setRobotMessage(nickname);
     UI.setStatusMessage("초기화 중 - 잠시만 기다려주세요");
 
     const videoPromise = UI.initPlayerVideo(camConfig);
@@ -28,6 +43,21 @@ async function onInit() {
         waitForPlayer();
     });
 }
+
+// 닉네임 입력창 이벤트 처리
+document.getElementById('start-btn').addEventListener('click', () => {
+    const nicknameInput = document.getElementById('nickname');
+    const nickname = nicknameInput.value.trim();
+
+    if (nickname === "") {
+        alert("닉네임을 입력해 주세요!");
+        return;
+    }
+
+    document.querySelector('.nickname-input').style.display = 'none';
+    sounds.click.play(); // 클릭 사운드 재생
+    onInit(nickname);
+});
 
 // 플레이어 입력 대기
 function waitForPlayer() {
@@ -76,31 +106,26 @@ function detectPlayerGesture(requiredDuration) {
             Prediction.predictGesture(playerVideo, 9).then(playerGesture => {
                 if(playerGesture != "") {
                     if(playerGesture == lastGesture) {
-                        // 같은 제스처 유지 시 시간 누적
                         const deltaTime = Date.now() - predictionStartTS;
                         gestureDuration += deltaTime;
                     }
                     else {
-                        // 새로운 제스처 인식 시 초기화
                         UI.setPlayerHand(playerGesture);
                         lastGesture = playerGesture;
                         gestureDuration = 0;
                     }
                 }
                 else {
-                    // 제스처 없음
                     UI.setPlayerHand(false);
                     lastGesture = "";
                     gestureDuration = 0;
                 }
 
                 if(gestureDuration < requiredDuration) {
-                    // 지속 시간이 부족하면 계속 측정
                     UI.setTimerProgress(gestureDuration / requiredDuration);
                     predictNonblocking();
                 }
                 else {
-                    // 제스처 확정
                     UI.setTimerProgress(1);
                     UI.animatePlayerHand();
                     const computerGesture = getRandomGesture();
@@ -123,46 +148,28 @@ function checkResult(playerGesture, computerGesture) {
         statusText = "AI와 비겼습니다!";
     } else {
         if (playerGesture == "rock") {
-            if (computerGesture == "scissors") {
-                playerWins = true;
-            } else {
-                computerWins = true;
-            }
+            playerWins = computerGesture == "scissors";
         } else if (playerGesture == "paper") {
-            if (computerGesture == "rock") {
-                playerWins = true;
-            } else {
-                computerWins = true;
-            }
+            playerWins = computerGesture == "rock";
         } else if (playerGesture == "scissors") {
-            if (computerGesture == "paper") {
-                playerWins = true;
-            } else {
-                computerWins = true;
-            }
+            playerWins = computerGesture == "paper";
         }
-
-        if (playerWins) {
-            statusText = "당신은 AI를 이겼습니다!";
-        } else if (computerWins) {
-            statusText = "당신은 AI에게 졌습니다!";
-        }
+        computerWins = !playerWins;
+        
+        statusText = playerWins ? "당신은 AI를 이겼습니다!" : "당신은 AI에게 졌습니다!";
+        if (playerWins) sounds.win.play();
+        else sounds.lose.play();
     }
 
     UI.showRobotHand(true);
     UI.setRobotGesture(computerGesture);
     UI.setStatusMessage(statusText);
 
-    // 3초 후에 키 입력 대기 상태로 돌아가기
     setTimeout(waitForPlayer, 3000);
 }
 
 // 컴퓨터 랜덤 제스처 선택
 function getRandomGesture() {
     const gestures = ["rock", "paper", "scissors"];
-    const randomNum = Math.floor(Math.random() * gestures.length);
-    return gestures[randomNum];
-}
-
-// 게임 실행 시작
-onInit();
+    return gestures[Math.floor(Math.random() * gestures.length)];
+}   

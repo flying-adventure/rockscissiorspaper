@@ -1,3 +1,4 @@
+// webpack.common.js
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -17,10 +18,7 @@ module.exports = {
 
   // Customize the webpack build process
   plugins: [
-    // Removes/cleans build folders and unused assets when rebuilding
     new CleanWebpackPlugin(),
-
-    // Copies files from target to destination folder
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -33,18 +31,14 @@ module.exports = {
         },
       ],
     }),
-
-    // Generates an HTML file from a template
-    // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
       title: 'Rock, Scissors, Paper with TensorFlow.js and Fingerpose',
       favicon: paths.src + '/images/favicon.png',
-      template: paths.src + '/template.html', // template file
-      filename: 'index.html', // output file
+      template: paths.src + '/template.html',
+      filename: 'index.html',
     }),
   ],
 
-  // Determine how modules within the project are treated
   module: {
     rules: [
       // JavaScript: Use Babel to transpile JavaScript files
@@ -55,6 +49,15 @@ module.exports = {
 
       // Fonts and SVGs: Inline files
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
+
+      // Sounds: Move mp3/wav files to build folder
+      {
+        test: /\.(mp3|wav)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'sounds/[name][ext]'
+        }
+      }
     ],
   },
 

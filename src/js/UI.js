@@ -25,11 +25,23 @@ export const UI = {
         (new Image()).src = "assets/paper.png";
         (new Image()).src = "assets/scissors.png";
     },
+    setRobotMessage: function(nickname) {
+        const $robotMessage = document.querySelector('#robot-message');
+        if ($robotMessage) {
+            $robotMessage.textContent = `안녕! ${nickname}!! 승부다!!`;
+        }
+    },
 
     // 타이머 원 초기 설정
     initTimerCircle: function() {
         $timerRingCircle.style.strokeDasharray = `${circumference} ${circumference}`;
         $timerRingCircle.style.strokeDashoffset = `${circumference}`;
+    },
+
+    // 닉네임 설정
+    setPlayerNickname: function(nickname) {
+        const playerNickElement = document.getElementById('player-nick');
+        playerNickElement.textContent = nickname;
     },
 
     // 상태 메시지 표시
@@ -41,7 +53,8 @@ export const UI = {
     startAnimateMessage: function() {
         $statusText.classList.add("fade-in-out");
     },
-    
+
+
     // 메시지 깜빡이기 중지
     stopAnimateMessage: function() {
         $statusText.classList.remove("fade-in-out");
@@ -97,13 +110,25 @@ export const UI = {
 
     // 로봇 손 모양 이미지 설정
     setRobotGesture: function(gesture) {
-        switch(gesture) {
-            case 'rock': $robotHand.src = "assets/rock.png"; break;
-            case 'paper': $robotHand.src = "assets/paper.png"; break;
-            case 'scissors': $robotHand.src = "assets/scissors.png"; break;
-            default: $robotHand.src = "";
+        if (!gesture) {
+            // 아무 제스처가 없을 경우 기본 로봇 이미지
+            $robotImage.src = "assets/robot.gif";
+            $robotImage.style.display = 'block';
+            $robotHand.style.display = 'none';
+            return;
         }
+    
+        const gestureMap = {
+            rock: 'assets/rock.png',
+            paper: 'assets/paper.png',
+            scissors: 'assets/scissors.png'
+        };
+    
+        $robotHand.src = gestureMap[gesture];
+        $robotHand.style.display = 'block';
+        $robotImage.style.display = 'none';
     },
+    
 
     // 플레이어 웹캠 열기
     initPlayerVideo: async function(constraints) {
@@ -124,3 +149,4 @@ export const UI = {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     },
 }
+
