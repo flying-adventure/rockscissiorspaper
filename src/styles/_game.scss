@@ -84,7 +84,7 @@ body {
 
 h1, h2 {
   font-family: 'Press Start 2P', cursive;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   color: #39ff14;
   animation: matrixGlitch 3s infinite ease-in-out;
   margin-bottom: 12px;
@@ -118,6 +118,8 @@ h1, h2 {
     typewriter 3.2s steps(40, end),
     blinkCaret 0.8s step-end infinite;
   font-weight: 700;
+  font-size: 2rem; /* << 추가 */
+
 }
 
 .message-text {
@@ -184,8 +186,9 @@ h1, h2 {
   border-radius: 12px;
   box-shadow: 0 0 12px #0af inset;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* 세로 정렬 추가 */
+  justify-content: center; /* 세로 중앙 */
+  align-items: center; /* 가로 중앙 */
   position: relative;
 }
 
@@ -215,6 +218,7 @@ h1, h2 {
   max-width: 80%;
   max-height: 80%;
   object-fit: contain;
+  z-index: 9999;
   display: none;
   filter: brightness(0.75) contrast(1.2) drop-shadow(0 0 12px #0af);
   animation: moveShake 0.4s ease-in-out infinite;
@@ -355,4 +359,14 @@ h1, h2 {
   text-align: center;
   text-shadow: 0 0 1px #0af, 0 0 3px #0af;
   animation: plasmaFlow 3s infinite ease-in-out;
+}
+.robot-message-image {
+  max-width: 80%;
+  max-height: 80%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 20px;
+  animation: aiIdlePulse 2s infinite;
+  transform: translateY(75px); 
+
 }
