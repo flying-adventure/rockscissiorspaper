@@ -1,4 +1,4 @@
-https://rockscissiorspaper.netlify.app/
+https://whoisthewinnerofthisgame.netlify.app/
 
 <h1>HOW to run</h1>
 
