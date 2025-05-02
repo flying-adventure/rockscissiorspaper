@@ -144,21 +144,33 @@ function checkResult(playerGesture, computerGesture) {
     let playerWins = false;
     let computerWins = false;
 
-    if (playerGesture == computerGesture) {
+    const playerBox = document.querySelector('.player');
+    const aiBox = document.querySelector('.ai');
+
+    // 기존 효과 제거
+    playerBox.classList.remove('win-flash', 'lose-flash');
+    aiBox.classList.remove('win-flash', 'lose-flash');
+
+    if (playerGesture === computerGesture) {
         statusText = "AI와 비겼습니다!";
     } else {
-        if (playerGesture == "rock") {
-            playerWins = computerGesture == "scissors";
-        } else if (playerGesture == "paper") {
-            playerWins = computerGesture == "rock";
-        } else if (playerGesture == "scissors") {
-            playerWins = computerGesture == "paper";
+        if (playerGesture === "rock") {
+            playerWins = computerGesture === "scissors";
+        } else if (playerGesture === "paper") {
+            playerWins = computerGesture === "rock";
+        } else if (playerGesture === "scissors") {
+            playerWins = computerGesture === "paper";
         }
         computerWins = !playerWins;
-        
+
         statusText = playerWins ? "당신은 AI를 이겼습니다!" : "당신은 AI에게 졌습니다!";
-        if (playerWins) sounds.win.play();
-        else sounds.lose.play();
+        if (playerWins) {
+            playerBox.classList.add('win-flash');  // 플레이어 박스 flash
+            sounds.win.play();
+        } else {
+            aiBox.classList.add('win-flash');      // AI 박스 flash
+            sounds.lose.play();
+        }
     }
 
     UI.showRobotHand(true);
@@ -167,6 +179,7 @@ function checkResult(playerGesture, computerGesture) {
 
     setTimeout(waitForPlayer, 3000);
 }
+
 
 // 컴퓨터 랜덤 제스처 선택
 function getRandomGesture() {

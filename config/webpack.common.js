@@ -32,7 +32,7 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      title: 'Rock, Scissors, Paper with TensorFlow.js and Fingerpose',
+      title: '서청센 AI메이커-가위바위보 게임',
       favicon: paths.src + '/images/favicon.png',
       template: paths.src + '/template.html',
       filename: 'index.html',
