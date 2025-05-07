@@ -45,7 +45,7 @@ Optimized layout for classroom and exhibition environments
 
 ```bash
 git clone https://github.com/flying-adventure/rockscissiorspaper.git
-cd RockScissiosPaper_TeachableMachine
+cd rockscissiorspaper
 npm install
 ```
 ### Development Server
