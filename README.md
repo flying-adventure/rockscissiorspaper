@@ -26,6 +26,14 @@ Sound effects for actions and results
 Designed for young students / children
 
 Optimized layout for classroom and exhibition environments
+
+## Contributors
+
+| Name                      | Role                                          |
+|---------------------------|-----------------------------------------------|
+| Soobin (@flying-adventure)       | Project Lead, AI Integration, Game Logic, Sound, UI/UX Design |
+| Taeyoung (@taeyoungHan-right)   | Style Enhancements (CSS/SCSS), Minor Design Tweaks             |
+
  
   
 <h1>HOW to run</h1>
