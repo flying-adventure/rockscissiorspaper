@@ -36,9 +36,7 @@ Optimized layout for classroom and exhibition environments
 
  
   
-<h1>HOW to run</h1>
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/download/) installed
