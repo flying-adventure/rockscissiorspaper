@@ -50,4 +50,5 @@ Optimized layout for classroom and exhibition environments
 </code>
 <h2>And go to http://localhost:8080</h2>
 
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/a2b6032a-5fa7-47ae-9fef-a1d02d69ea23)
+
