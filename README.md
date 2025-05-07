@@ -7,7 +7,6 @@ https://whoisthewinnerofthisgame.netlify.app/
 
 - **Frontend**: HTML5, SCSS, Vanilla JavaScript (ES6)
 - **Build Tool**: Webpack
-- **AI Model**: Google Teachable Machine (Image Classification)
 - **Libraries**:
   - [`howler.js`](https://github.com/goldfire/howler.js): Sound effects
   - TensorFlow.js-based gesture prediction
