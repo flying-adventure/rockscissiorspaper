@@ -31,8 +31,8 @@ Optimized layout for classroom and exhibition environments
 
 | Name                      | Role                                          |
 |---------------------------|-----------------------------------------------|
-| Soobin (@flying-adventure)       | Project Lead, AI Integration, Game Logic, Sound, UI/UX Design |
-| Taeyoung (@taeyoungHan-right)   | Style Enhancements (CSS/SCSS), Minor Design Tweaks             |
+| Soobin (@flying-adventure)       | Project Lead, AI Integration, Game Logic,  UI/UX Design |
+| Taeyoung (@taeyoungHan-right)   | Style Enhancements (CSS/SCSS), Game Sound, Design Tweaks |
 
  
   
