@@ -38,17 +38,30 @@ Optimized layout for classroom and exhibition environments
   
 <h1>HOW to run</h1>
 
-1. Node.js, npm 설치
+## 🚀 Getting Started
 
-2. 프로젝트 clone
-(git bash 창에서)
-<code>
-   git clone https://github.com/flying-adventure/rockscissiorspaper.git
-   cd RockScissiosPaper_TeachableMachine
-   npm install
-   npm run start
-</code>
-<h2>And go to http://localhost:8080</h2>
+### Prerequisites
+- [Node.js](https://nodejs.org/en/download/) installed
+
+### Installation
+
+```bash
+git clone https://github.com/flying-adventure/rockscissiorspaper.git
+cd RockScissiosPaper_TeachableMachine
+npm install
+```
+### Development Server
+```bash
+npm run start
+```
+Open your browser and visit: http://localhost:8080
+
+### Production Build
+```bash
+
+npm run build
+```
+The compiled files will be in the dist/ folder.
 
 ![image](https://github.com/user-attachments/assets/a2b6032a-5fa7-47ae-9fef-a1d02d69ea23)
 
