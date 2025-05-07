@@ -1,8 +1,9 @@
-##배포 주소
+## 배포 주소
 https://whoisthewinnerofthisgame.netlify.app/
 
+---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Frontend**: HTML5, SCSS, Vanilla JavaScript (ES6)
 - **Build Tool**: Webpack
@@ -14,7 +15,7 @@ https://whoisthewinnerofthisgame.netlify.app/
 
 ---
 
-Features
+## Features
 Real-time hand gesture detection (via webcam)
 
 AI opponent using random moves
